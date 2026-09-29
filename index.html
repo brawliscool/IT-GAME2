@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#070b12" />
-  <meta name="description" content="A browser-based IT desktop support simulation game." />
-  <title>IT Desk Simulator</title>
+  <meta name="description" content="A browser-based IT job simulation with help desk, infrastructure, security, onboarding, and career progression." />
+  <title>IT Job Simulator</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,73 +15,72 @@
         <div class="brand-mark">IT</div>
         <div>
           <p class="eyebrow">Northstar Systems</p>
-          <h1>Desktop Support</h1>
+          <h1>IT Job Simulator</h1>
         </div>
       </div>
       <div class="top-stats">
         <div class="stat-chip"><span>SHIFT</span><strong id="shiftClock">08:00</strong></div>
+        <div class="stat-chip"><span>LEVEL</span><strong id="levelValue">Tier 1</strong></div>
         <div class="stat-chip"><span>XP</span><strong id="xpValue">0</strong></div>
         <div class="stat-chip"><span>RATING</span><strong id="ratingValue">100%</strong></div>
       </div>
     </header>
 
     <main>
-      <section id="view-queue" class="view active" data-view="queue">
+      <section id="view-dashboard" class="view active" data-view="dashboard">
         <div class="page-head">
           <div>
-            <p class="eyebrow">SERVICE DESK</p>
-            <h2>Ticket Queue</h2>
-            <p class="muted">Diagnose the actual cause, apply the right fix, verify it, then close the ticket.</p>
+            <p class="eyebrow">IT OPERATIONS</p>
+            <h2>Shift Dashboard</h2>
+            <p class="muted">Run the help desk, protect the company, handle outages, and build your IT career.</p>
           </div>
-          <button id="newShiftBtn" class="ghost-button">Reset shift</button>
+          <button id="newShiftBtn" class="ghost-button">New shift</button>
         </div>
-
-        <div class="summary-grid">
-          <article class="summary-card"><span>Open</span><strong id="openCount">0</strong><small>tickets waiting</small></article>
-          <article class="summary-card"><span>Resolved</span><strong id="resolvedCount">0</strong><small>this shift</small></article>
-          <article class="summary-card"><span>SLA Risk</span><strong id="riskCount">0</strong><small>high-priority tickets</small></article>
-          <article class="summary-card"><span>Credits</span><strong id="creditsValue">$0</strong><small>performance bonus</small></article>
+        <div class="summary-grid summary-grid-wide">
+          <article class="summary-card"><span>Open tickets</span><strong id="openCount">0</strong><small>service requests</small></article>
+          <article class="summary-card"><span>Major incidents</span><strong id="majorCount">0</strong><small>P1/P2 active</small></article>
+          <article class="summary-card"><span>Employees</span><strong>247</strong><small>company users</small></article>
+          <article class="summary-card"><span>Endpoints</span><strong>318</strong><small>managed devices</small></article>
+          <article class="summary-card"><span>Security</span><strong id="securityScore">A</strong><small>current posture</small></article>
+          <article class="summary-card"><span>Salary</span><strong id="salaryValue">$22/hr</strong><small>career progression</small></article>
         </div>
-
-        <div class="queue-layout">
-          <section class="panel ticket-panel">
-            <div class="panel-title-row">
-              <div><p class="eyebrow">INBOX</p><h3>Incoming requests</h3></div>
-              <span id="queueBadge" class="badge">0 open</span>
-            </div>
-            <div id="ticketList" class="ticket-list"></div>
+        <div class="dashboard-grid">
+          <section class="panel">
+            <div class="panel-title-row"><div><p class="eyebrow">LIVE QUEUE</p><h3>Priority work</h3></div><span class="badge" id="queueBadge">0 open</span></div>
+            <div id="dashboardTickets" class="ticket-list"></div>
           </section>
+          <section class="panel">
+            <div class="panel-title-row"><div><p class="eyebrow">COMPANY HEALTH</p><h3>Infrastructure</h3></div></div>
+            <div id="infraSummary" class="system-grid"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-title-row"><div><p class="eyebrow">TODAY</p><h3>Shift objectives</h3></div></div>
+            <div id="shiftObjectives" class="objective-list"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-title-row"><div><p class="eyebrow">CAREER</p><h3>Progression</h3></div></div>
+            <div id="careerSummary" class="career-card"></div>
+          </section>
+        </div>
+      </section>
 
-          <aside class="panel ticket-detail" id="ticketDetail">
-            <div class="empty-state">
-              <div class="empty-icon">⌁</div>
-              <h3>Select a ticket</h3>
-              <p>Open a request to see the user, symptoms, SLA, conversation, and troubleshooting controls.</p>
-            </div>
-          </aside>
+      <section id="view-queue" class="view" data-view="queue">
+        <div class="page-head">
+          <div><p class="eyebrow">SERVICE DESK</p><h2>Ticket Queue</h2><p class="muted">Diagnose the real cause, fix it, verify it, then close the incident.</p></div>
+        </div>
+        <div class="queue-layout">
+          <section class="panel ticket-panel"><div class="panel-title-row"><div><p class="eyebrow">INBOX</p><h3>Incoming requests</h3></div><span id="queueBadge2" class="badge">0 open</span></div><div id="ticketList" class="ticket-list"></div></section>
+          <aside class="panel ticket-detail" id="ticketDetail"><div class="empty-state"><div class="empty-icon">⌁</div><h3>Select a ticket</h3><p>Choose an incident to see the user, symptoms, SLA, conversation, and controls.</p></div></aside>
         </div>
       </section>
 
       <section id="view-remote" class="view" data-view="remote">
-        <div class="page-head compact">
-          <div>
-            <p class="eyebrow">REMOTE SESSION</p>
-            <h2 id="remoteTitle">No active session</h2>
-          </div>
-          <button id="backToTicketBtn" class="ghost-button">Ticket details</button>
-        </div>
-
+        <div class="page-head compact"><div><p class="eyebrow">REMOTE SESSION</p><h2 id="remoteTitle">No active session</h2></div><button id="backToTicketBtn" class="ghost-button">Ticket details</button></div>
         <div class="remote-layout">
           <div class="remote-monitor-wrap">
-            <div class="monitor-topbar">
-              <div><span class="status-dot"></span><span id="remoteHost">Disconnected</span></div>
-              <div class="monitor-actions"><span id="remoteUser">—</span><span>Encrypted session</span></div>
-            </div>
+            <div class="monitor-topbar"><div><span class="status-dot"></span><span id="remoteHost">Disconnected</span></div><div class="monitor-actions"><span id="remoteUser">—</span><span>Encrypted session</span></div></div>
             <div class="desktop" id="desktop">
-              <div class="desktop-wallpaper">
-                <div class="wallpaper-logo">N</div>
-                <div class="wallpaper-copy"><strong>Northstar</strong><span>Managed workstation</span></div>
-              </div>
+              <div class="desktop-wallpaper"><div class="wallpaper-logo">N</div><div class="wallpaper-copy"><strong>Northstar</strong><span>Managed workstation</span></div></div>
               <div class="desktop-icons">
                 <button class="desktop-icon" data-app="terminal"><span>⌨</span><small>Terminal</small></button>
                 <button class="desktop-icon" data-app="network"><span>⌁</span><small>Network</small></button>
@@ -89,56 +88,62 @@
                 <button class="desktop-icon" data-app="services"><span>⚙</span><small>Services</small></button>
                 <button class="desktop-icon" data-app="devices"><span>▣</span><small>Devices</small></button>
                 <button class="desktop-icon" data-app="accounts"><span>♙</span><small>Accounts</small></button>
+                <button class="desktop-icon" data-app="eventviewer"><span>◫</span><small>Event Viewer</small></button>
+                <button class="desktop-icon" data-app="storage"><span>▱</span><small>Storage</small></button>
+                <button class="desktop-icon" data-app="security"><span>◆</span><small>Security</small></button>
+                <button class="desktop-icon" data-app="outlook"><span>✉</span><small>Outlook</small></button>
               </div>
               <div id="windowLayer" class="window-layer"></div>
-              <div class="taskbar">
-                <button id="startBtn" class="start-button">⊞</button>
-                <div class="taskbar-search">Type here to search</div>
-                <div class="taskbar-spacer"></div>
-                <span id="taskbarNetwork">⌁</span>
-                <span>▮</span>
-                <time id="desktopClock">9:41 AM</time>
-              </div>
+              <div class="taskbar"><button id="startBtn" class="start-button">⊞</button><div class="taskbar-search">Type here to search</div><div class="taskbar-spacer"></div><span id="taskbarNetwork">⌁</span><span>▮</span><time id="desktopClock">9:41 AM</time></div>
             </div>
           </div>
-
-          <aside class="panel action-log-panel">
-            <div class="panel-title-row"><div><p class="eyebrow">WORK NOTES</p><h3>Activity log</h3></div></div>
-            <div id="actionLog" class="action-log"></div>
-            <div class="verify-box">
-              <p>Think the issue is fixed?</p>
-              <button id="verifyFixBtn" class="primary-button full">Run verification</button>
-              <p id="verifyHint" class="tiny muted">Verification checks the simulated machine state. Guessing costs rating.</p>
-            </div>
-          </aside>
+          <aside class="panel action-log-panel"><div class="panel-title-row"><div><p class="eyebrow">WORK NOTES</p><h3>Activity log</h3></div></div><div id="actionLog" class="action-log"></div><div class="verify-box"><p>Think the issue is fixed?</p><button id="verifyFixBtn" class="primary-button full">Run verification</button><p class="tiny muted">Verification checks the simulated machine state. Guessing costs rating.</p></div></aside>
         </div>
+      </section>
+
+      <section id="view-admin" class="view" data-view="admin">
+        <div class="page-head"><div><p class="eyebrow">ADMINISTRATION</p><h2>Company Systems</h2><p class="muted">Manage identity, Microsoft 365, endpoints, onboarding, offboarding, and infrastructure.</p></div></div>
+        <div class="admin-grid">
+          <section class="panel"><div class="panel-title-row"><div><p class="eyebrow">IDENTITY</p><h3>Directory & Entra</h3></div></div><div id="identityAdmin" class="admin-content"></div></section>
+          <section class="panel"><div class="panel-title-row"><div><p class="eyebrow">M365</p><h3>Licenses & mail</h3></div></div><div id="m365Admin" class="admin-content"></div></section>
+          <section class="panel"><div class="panel-title-row"><div><p class="eyebrow">ENDPOINTS</p><h3>Managed devices</h3></div></div><div id="endpointAdmin" class="admin-content"></div></section>
+          <section class="panel"><div class="panel-title-row"><div><p class="eyebrow">LIFECYCLE</p><h3>Onboarding & offboarding</h3></div></div><div id="lifecycleAdmin" class="admin-content"></div></section>
+        </div>
+      </section>
+
+      <section id="view-security" class="view" data-view="security">
+        <div class="page-head"><div><p class="eyebrow">SECURITY OPERATIONS</p><h2>Security Center</h2><p class="muted">Investigate phishing, malware, compromised accounts, endpoint alerts, and risky sign-ins.</p></div></div>
+        <div id="securityCenter" class="security-grid"></div>
       </section>
 
       <section id="view-kb" class="view" data-view="kb">
-        <div class="page-head">
-          <div><p class="eyebrow">KNOWLEDGE BASE</p><h2>Support Playbooks</h2><p class="muted">Use documentation if you get stuck. Reading docs does not reduce your score.</p></div>
-        </div>
+        <div class="page-head"><div><p class="eyebrow">KNOWLEDGE BASE</p><h2>Support Playbooks</h2><p class="muted">Documentation is free to use. Good technicians know when to look things up.</p></div></div>
         <div id="kbGrid" class="kb-grid"></div>
       </section>
 
+      <section id="view-career" class="view" data-view="career">
+        <div class="page-head"><div><p class="eyebrow">CAREER MODE</p><h2>IT Career</h2><p class="muted">Earn promotions, certifications, higher pay, and access to harder systems.</p></div></div>
+        <div id="careerContent" class="stats-content"></div>
+      </section>
+
       <section id="view-stats" class="view" data-view="stats">
-        <div class="page-head">
-          <div><p class="eyebrow">PERFORMANCE</p><h2>Shift Report</h2><p class="muted">Your choices affect speed, accuracy, customer satisfaction, and XP.</p></div>
-        </div>
+        <div class="page-head"><div><p class="eyebrow">PERFORMANCE</p><h2>Shift Report</h2><p class="muted">Your decisions affect SLA, user satisfaction, security, speed, and promotion readiness.</p></div></div>
         <div id="statsContent" class="stats-content"></div>
       </section>
     </main>
 
     <nav class="bottom-nav" aria-label="Primary navigation">
-      <button class="nav-item active" data-target="queue"><span>▤</span><small>Tickets</small></button>
+      <button class="nav-item active" data-target="dashboard"><span>⌂</span><small>Home</small></button>
+      <button class="nav-item" data-target="queue"><span>▤</span><small>Tickets</small></button>
       <button class="nav-item" data-target="remote"><span>▣</span><small>Remote</small></button>
+      <button class="nav-item" data-target="admin"><span>⚙</span><small>Admin</small></button>
+      <button class="nav-item" data-target="security"><span>◆</span><small>Security</small></button>
       <button class="nav-item" data-target="kb"><span>⌕</span><small>KB</small></button>
+      <button class="nav-item" data-target="career"><span>★</span><small>Career</small></button>
       <button class="nav-item" data-target="stats"><span>▥</span><small>Stats</small></button>
     </nav>
   </div>
-
   <div id="toastStack" class="toast-stack" aria-live="polite"></div>
-
   <script src="app.js"></script>
 </body>
 </html>
